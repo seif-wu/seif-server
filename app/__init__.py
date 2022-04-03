@@ -1,0 +1,30 @@
+import os
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from config import config
+
+db = SQLAlchemy()
+migrate = Migrate()
+
+
+def create_app():
+    config_name = os.getenv('FLASK_CONFIG') or 'default'
+
+    # create and configure the app
+    app = Flask(__name__, instance_relative_config=True)
+
+    app.config.from_object(config[config_name])
+
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    from .controllers import Controllers
+    Controllers.init_app(app)
+
+    @app.route('/ping')
+    def ping():
+        return 'pong!'
+
+    return app
