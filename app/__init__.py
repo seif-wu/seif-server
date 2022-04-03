@@ -10,7 +10,7 @@ migrate = Migrate()
 
 
 def create_app():
-    config_name = os.getenv('FLASK_CONFIG') or 'default'
+    config_name = os.getenv('FLASK_ENV')
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
