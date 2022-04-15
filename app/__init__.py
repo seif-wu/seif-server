@@ -21,7 +21,9 @@ def create_app():
     migrate.init_app(app, db)
 
     from .controllers import Controllers
+    from .models import Models
     Controllers.init_app(app)
+    Models.init_app(app)
 
     @app.route('/ping')
     def ping():
