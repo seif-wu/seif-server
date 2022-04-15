@@ -21,8 +21,13 @@ def api_proxy(url):
 
 @tmdb_bp.get('/image/<path:url>')
 def image_proxy(url):
+    type = request.args.get('type')
     base_url = os.getenv("TMDB_IMG_URL")
-    resp = requests.request('GET', f"{base_url}/t/p/w500/{url}")
+    request_url = f"{base_url}/t/p/w500/{url}"
 
-    # TODO 可以区别原图还是指定大小
+    if type == 'original':
+        request_url = f"{base_url}/t/p/original/{url}"
+
+    resp = requests.request('GET', request_url)
+
     return Response(resp, mimetype=resp.headers['Content-Type'])
