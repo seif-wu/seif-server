@@ -10,7 +10,7 @@ class WechatUser(db.Model):
     wechat_openid = db.Column(db.String(255))
     wechat_unionid = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    user = db.relationship("User", back_populates="user")
+    user = db.relationship("User", back_populates="wechat_user")
 
     def __repr__(self):
         return '<WechatUser %r>' % self.name

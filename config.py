@@ -3,6 +3,7 @@ import os
 
 class Config:
     SECRET_KEY = os.getenv("APP_SECRET_KEY")
+    JWT_SECRET_KEY = os.getenv("APP_SECRET_KEY")
     JSON_AS_ASCII = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS=True
