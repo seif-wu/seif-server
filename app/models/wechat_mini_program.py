@@ -8,3 +8,7 @@ class WechatMiniProgram(db.Model):
 
     def __repr__(self):
         return '<WechatMiniProgram %r>' % self.app_id
+
+    @staticmethod
+    def default():
+        return WechatMiniProgram.query.filter_by(name='default').first()
