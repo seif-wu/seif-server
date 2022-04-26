@@ -7,7 +7,7 @@ class User(db.Model):
     avatar = db.Column(db.String(255))
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    wechat_user = db.relationship("WechatUser", back_populates="user")
+    wechat_user = db.relationship("WechatUser", back_populates="user", uselist=False)
 
     def __repr__(self):
         return '<User %r>' % self.username

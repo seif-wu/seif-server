@@ -1,3 +1,4 @@
+import datetime
 import os
 
 
@@ -7,6 +8,7 @@ class Config:
     JSON_AS_ASCII = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS=True
+    JWT_ACCESS_TOKEN_EXPIRES=datetime.timedelta(days=30)
 
     @staticmethod
     def init_app(app):
