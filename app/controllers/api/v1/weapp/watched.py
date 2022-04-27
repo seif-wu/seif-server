@@ -55,7 +55,7 @@ def destroy(id):
         return jsonify(
             success=False,
             message="资源不存在",
-        ), 400
+        ), 404
 
     db.session.delete(w)
     db.session.commit()
