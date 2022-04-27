@@ -1,3 +1,4 @@
+from sqlalchemy import true
 from app import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -8,6 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     wechat_user = db.relationship("WechatUser", back_populates="user", uselist=False)
+    watcheds = db.relationship('Watched', backref='user', lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.username

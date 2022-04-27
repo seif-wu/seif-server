@@ -1,11 +1,8 @@
-from re import U
-from unittest import result
 from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
 
 from app.models.schema.wechat_user_schema import WechatUserSchema
-from app.models.schema.user_schema import UserSchema
 from app.models.user import User
 
 
