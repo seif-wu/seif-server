@@ -4,6 +4,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+
+from app.models.schema import Schema
 from config import config
 
 db = SQLAlchemy()
@@ -26,6 +28,7 @@ def create_app():
     from .models import Models
     Controllers.init_app(app)
     Models.init_app(app)
+    Schema.init_app(app)
 
     @app.route('/ping')
     def ping():
