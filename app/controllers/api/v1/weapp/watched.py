@@ -1,5 +1,4 @@
 from datetime import datetime
-from email import message
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
@@ -9,6 +8,27 @@ from app.models.schema.watched_schema import WatchedSchema
 from app.models.watched import Watched
 
 weapp_watched_bp = Blueprint('watched', __name__, url_prefix='/watched')
+
+
+@weapp_watched_bp.get('')
+@jwt_required()
+def index():
+    args = request.args
+    watcheds = Watched.query.paginate(page=args.get(
+        "page", 1), per_page=args.get("pageSize", 10))
+    watched_schema = WatchedSchema()
+    result = watched_schema.dump(watcheds.items, many=True)
+
+    return jsonify(
+        success=True,
+        date=result,
+        meta={
+            "has_next": watcheds.has_next,
+            "has_prev": watcheds.has_prev,
+            "page": watcheds.page,
+            "total": watcheds.total,
+        }
+    )
 
 
 @weapp_watched_bp.post('')
@@ -46,6 +66,24 @@ def create():
         data=result,
     ), 200
 
+
+@weapp_watched_bp.get('<int:id>')
+@jwt_required()
+def show(id):
+    w = Watched.query.get(id)
+    if w is None:
+        return jsonify(
+            success=False,
+            message="资源不存在",
+        ), 404
+
+    watched_schema = WatchedSchema()
+    result = watched_schema.dump(w)
+
+    return jsonify(
+        success=True,
+        data=result
+    )
 
 @weapp_watched_bp.delete('<int:id>')
 @jwt_required()
