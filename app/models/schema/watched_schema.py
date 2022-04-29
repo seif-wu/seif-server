@@ -2,6 +2,7 @@
 
 from marshmallow import Schema, fields
 
+
 class WatchedSchema(Schema):
     id = fields.Int(dump_only=True)
     title = fields.Str()
@@ -10,3 +11,4 @@ class WatchedSchema(Schema):
     backdrop_path = fields.Str()
     meida_type = fields.Str()
     watched_at = fields.DateTime()
+    user_id = fields.Int(dump_only=True)

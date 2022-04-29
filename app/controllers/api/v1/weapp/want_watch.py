@@ -67,7 +67,7 @@ def create():
     ), 200
 
 
-@weapp_want_watched_bp.delete('<int:id>')
+@weapp_want_watched_bp.delete('/<int:id>')
 @jwt_required()
 def destroy(id):
     w = WantWatch.query.get(id)
@@ -85,7 +85,7 @@ def destroy(id):
         message="删除成功"
     )
 
-@weapp_want_watched_bp.get('<int:id>')
+@weapp_want_watched_bp.get('/<int:id>')
 @jwt_required()
 def show(id):
     w = WantWatch.query.get(id)
