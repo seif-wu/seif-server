@@ -1,9 +1,10 @@
 import os
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 from app.models.schema import Schema
 from config import config
@@ -11,6 +12,7 @@ from config import config
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
+
 
 def create_app():
     config_name = os.getenv('FLASK_ENV')
@@ -29,6 +31,7 @@ def create_app():
     Controllers.init_app(app)
     Models.init_app(app)
     Schema.init_app(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     @app.route('/ping')
     def ping():
