@@ -1,7 +1,8 @@
-import os
 import json
 import requests
 from flask import Blueprint
+
+from app import cache
 
 leetcode_question_progress_bp = Blueprint(
     'leetcode_question_progress_bp', __name__, url_prefix='/question_progress')
@@ -10,6 +11,7 @@ url = "https://leetcode.cn/graphql/"
 
 
 @leetcode_question_progress_bp.get("")
+@cache.cached(timeout=120)
 def question_progress():
     # TODO 名称写活
     payload = json.dumps({

@@ -2,7 +2,8 @@ import os
 import json
 import requests
 from flask import Blueprint
-from flask import jsonify
+
+from app import cache
 
 github_languages_bp = Blueprint(
     'github_languages_bp', __name__, url_prefix='/languages')
@@ -11,6 +12,7 @@ url = "https://api.github.com/graphql"
 
 
 @github_languages_bp.get("")
+@cache.cached(timeout=300)
 def languages_stats():
     headers = {
         'Authorization': f"Bearer {os.getenv('GITHUB_TOKEN')}",

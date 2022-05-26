@@ -4,10 +4,13 @@ import requests
 from flask import Blueprint
 from flask import jsonify
 
+from app import cache
+
 github_user_bp = Blueprint('github_user_bp', __name__, url_prefix='/user')
 
 
 @github_user_bp.get('')
+@cache.cached(timeout=300)
 def user():
     # TODO GitHub 用户名可配置
     url = "https://api.github.com/users/seif-wu"
