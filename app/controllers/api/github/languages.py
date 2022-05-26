@@ -19,25 +19,25 @@ def languages_stats():
 
     payload = {
         "query": """
-        query userInfo($login: String!) {\n
-          user(login: $login) {\n
-            # fetch only owner repos & not forks\n
-            repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {\n
-              nodes {\n
-                name\n
-                languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {\n
-                  edges {\n
-                    size\n
-                    node {\n
-                      color\n
-                      name\n
+          query userInfo($login: String!) {\n
+            user(login: $login) {\n
+              # fetch only owner repos & not forks\n
+              repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {\n
+                nodes {\n
+                  name\n
+                  languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {\n
+                    edges {\n
+                      size\n
+                      node {\n
+                        color\n
+                        name\n
+                      }\n
                     }\n
                   }\n
                 }\n
               }\n
             }\n
-          }\n
-        }
+          }
       """,
         "variables": {
             "login": "seif-wu"
