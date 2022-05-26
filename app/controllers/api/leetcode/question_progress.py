@@ -11,7 +11,7 @@ url = "https://leetcode.cn/graphql/"
 
 
 @leetcode_question_progress_bp.get("")
-@cache.cached(timeout=120)
+@cache.cached(timeout=300)
 def question_progress():
     # TODO 名称写活
     payload = json.dumps({
