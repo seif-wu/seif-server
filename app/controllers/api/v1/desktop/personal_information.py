@@ -15,6 +15,7 @@ def show():
     if not token:
         return jsonify(
             success=False,
+            code='personal_information_001',
             message="令牌好像不见了",
         ), 400
 
@@ -30,12 +31,14 @@ def show():
     if myself is None:
         return jsonify(
             success=False,
+            code='personal_information_002',
             message="糟糕，信息不存在了",
         ), 400
 
     if mobile != myself.mobile:
         return jsonify(
             success=False,
+            code='personal_information_003',
             message="您好像不知道联系方式",
         ), 400
 
@@ -60,9 +63,9 @@ def update():
     name = request.json.get("name", None)
     mobile = request.json.get("mobile", None)
     if not name:
-        return jsonify(success=False, message="名字不能为空"), 400
+        return jsonify(success=False, code='personal_information_004', message="名字不能为空"), 400
     if not mobile:
-        return jsonify(success=False, message="联系方式不能为空"), 400
+        return jsonify(success=False, code='personal_information_005', message="联系方式不能为空"), 400
 
     myself.name = name
     myself.mobile = mobile
