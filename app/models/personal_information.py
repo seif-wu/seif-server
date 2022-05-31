@@ -10,3 +10,7 @@ class PersonalInformation(db.Model, Base):
     work_experience = db.Column(db.Integer)
     educational_background = db.Column(db.String(128))
     desc = db.Column(db.Text)
+
+    @staticmethod
+    def myself():
+        return PersonalInformation.query.first()
