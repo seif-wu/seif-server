@@ -9,6 +9,9 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS=True
     JWT_ACCESS_TOKEN_EXPIRES=datetime.timedelta(days=30)
+    REDIS_HOST = os.getenv("REDIS_HOST")
+    REDIS_PORT = os.getenv("REDIS_PORT")
+    REDIS_DB = os.getenv("REDIS_DB")
 
     @staticmethod
     def init_app(app):
