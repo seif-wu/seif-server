@@ -31,13 +31,13 @@ def show():
         return jsonify(
             success=False,
             message="糟糕，信息不存在了",
-        )
+        ), 400
 
     if mobile != myself.mobile:
         return jsonify(
             success=False,
             message="您好像不知道联系方式",
-        )
+        ), 400
 
     myself_schema = PersonalInformationSchema()
     result = myself_schema.dump(myself)
@@ -60,9 +60,9 @@ def update():
     name = request.json.get("name", None)
     mobile = request.json.get("mobile", None)
     if not name:
-        return jsonify(success=False, message="名字不能为空")
+        return jsonify(success=False, message="名字不能为空"), 400
     if not mobile:
-        return jsonify(success=False, message="联系方式不能为空")
+        return jsonify(success=False, message="联系方式不能为空"), 400
 
     myself.name = name
     myself.mobile = mobile
