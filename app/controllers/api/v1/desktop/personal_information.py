@@ -16,7 +16,7 @@ def show():
         return jsonify(
             success=False,
             message="令牌好像不见了",
-        )
+        ), 400
 
     redis_key = "personal_information:{token}".format(token=token)
     data = Redis.hgetall(redis_key)
