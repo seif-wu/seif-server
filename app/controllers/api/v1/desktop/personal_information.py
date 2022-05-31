@@ -22,7 +22,10 @@ def show():
     redis_key = "personal_information:{token}".format(token=token)
     data = Redis.hgetall(redis_key)
     if data:
-        return data
+        return jsonify(
+            success=True,
+            data=data
+        )
 
     myself = PersonalInformation.myself()
     args = request.args
