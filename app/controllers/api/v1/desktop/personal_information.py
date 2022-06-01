@@ -38,6 +38,13 @@ def show():
             message="糟糕，信息不存在了",
         ), 400
 
+    if mobile is None:
+        return jsonify(
+            success=False,
+            code='personal_information_006',
+            message="您需要先输入我的联系方式",
+        ), 400
+
     if mobile != myself.mobile:
         return jsonify(
             success=False,
