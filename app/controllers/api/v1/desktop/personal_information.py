@@ -100,6 +100,10 @@ def update():
     if educational_background is not None:
          myself.educational_background = educational_background
 
+    birthday = request.json.get("birthday", None)
+    if birthday is not None:
+         myself.birthday = birthday
+
     desc = request.json.get("desc", None)
     if desc is not None:
          myself.desc = desc

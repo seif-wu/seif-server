@@ -8,6 +8,7 @@ class PersonalInformationSchema(Schema):
     email = fields.Str()
     num_projects = fields.Int()
     work_experience = fields.Int()
+    birthday = fields.Date()
     educational_background = fields.Str()
     desc= fields.Str()
     created_at = fields.DateTime(dump_only=True)

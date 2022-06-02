@@ -8,6 +8,7 @@ class PersonalInformation(db.Model, Base):
     email = db.Column(db.String(128))
     num_projects = db.Column(db.Integer)
     work_experience = db.Column(db.Integer)
+    birthday = db.Column(db.Date)
     educational_background = db.Column(db.String(128))
     desc = db.Column(db.Text)
 
