@@ -111,6 +111,10 @@ def update():
     if desc is not None:
          myself.desc = desc
 
+    other_info = request.json.get("other_info", None)
+    if other_info is not None:
+         myself.other_info = other_info
+
     db.session.add(myself)
     db.session.commit()
 

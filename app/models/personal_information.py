@@ -12,6 +12,7 @@ class PersonalInformation(db.Model, Base):
     birthday = db.Column(db.Date)
     educational_background = db.Column(db.String(128))
     desc = db.Column(db.Text)
+    other_info = db.Column(db.Text)
     work_histories = db.relationship(
         'WorkHistory', backref='personal_information', lazy=True)
     project_histories = db.relationship(

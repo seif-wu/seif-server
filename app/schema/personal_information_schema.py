@@ -14,6 +14,7 @@ class PersonalInformationSchema(Schema):
     desc = fields.Str()
     created_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
+    other_info = fields.Str()
     work_histories = fields.List(fields.Nested(
         'WorkHistorySchema', exclude=("personal_information", )))
     project_histories = fields.List(fields.Nested(
