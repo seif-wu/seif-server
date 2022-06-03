@@ -7,4 +7,5 @@ class Models:
                 watched, \
                 want_watch, \
                 personal_information, \
-                work_history
+                work_history, \
+                project_history

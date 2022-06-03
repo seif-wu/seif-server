@@ -14,6 +14,8 @@ class PersonalInformation(db.Model, Base):
     desc = db.Column(db.Text)
     work_histories = db.relationship(
         'WorkHistory', backref='personal_information', lazy=True)
+    project_histories = db.relationship(
+        'ProjectHistory', backref='personal_information', lazy=True)
 
     @staticmethod
     def myself():
