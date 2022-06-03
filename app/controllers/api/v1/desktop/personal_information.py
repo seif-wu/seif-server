@@ -11,6 +11,8 @@ personal_information_bp = Blueprint(
 
 @personal_information_bp.get('')
 def show():
+    myself_schema = PersonalInformationSchema()
+
     token = request.headers.get('X-Token')
     if not token:
         return jsonify(
@@ -20,8 +22,11 @@ def show():
         ), 400
 
     redis_key = "personal_information:{token}".format(token=token)
-    data = Redis.hgetall(redis_key)
-    if data:
+    redis_key_info_id = Redis.get(redis_key)
+    if redis_key_info_id:
+        info = PersonalInformation.query.get(redis_key_info_id)
+        data = myself_schema.dump(info)
+
         return jsonify(
             success=True,
             data=data
@@ -52,10 +57,8 @@ def show():
             message="您好像不知道联系方式",
         ), 400
 
-    myself_schema = PersonalInformationSchema()
     result = myself_schema.dump(myself)
-    Redis.hmset(redis_key, result)
-    Redis.expire(redis_key, expire=86400)
+    Redis.set(redis_key, myself.id, 86400)
 
     return jsonify(
         success=True,

@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 
+
 class PersonalInformationSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str()
@@ -10,6 +11,8 @@ class PersonalInformationSchema(Schema):
     work_experience = fields.Int()
     birthday = fields.Date()
     educational_background = fields.Str()
-    desc= fields.Str()
+    desc = fields.Str()
     created_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
+    work_histories = fields.List(fields.Nested(
+        'WorkHistorySchema', exclude=("personal_information", )))

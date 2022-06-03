@@ -6,4 +6,5 @@ class Models:
                 wechat_user, \
                 watched, \
                 want_watch, \
-                personal_information
+                personal_information, \
+                work_history

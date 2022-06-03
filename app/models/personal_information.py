@@ -1,6 +1,7 @@
 from app import db
 from .base import Base
 
+
 class PersonalInformation(db.Model, Base):
     name = db.Column(db.String(128), nullable=False)
     age = db.Column(db.Integer)
@@ -11,6 +12,8 @@ class PersonalInformation(db.Model, Base):
     birthday = db.Column(db.Date)
     educational_background = db.Column(db.String(128))
     desc = db.Column(db.Text)
+    work_histories = db.relationship(
+        'WorkHistory', backref='personal_information', lazy=True)
 
     @staticmethod
     def myself():
