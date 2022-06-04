@@ -1,10 +1,15 @@
-FROM python:3.9-slim
+FROM python:3.9
 
 WORKDIR /app
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+# RUN pip install wheel
 
-COPY . /app
+COPY requirements.txt ./requirements.txt
+
+RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+COPY . .
+
+RUN flask db upgrade
 
 CMD ["gunicorn", "manage:app", "-c", "./gunicorn.conf.py"]
