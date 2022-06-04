@@ -1,7 +1,9 @@
 import os
 import requests
 from flask import Blueprint, Response, jsonify, request
+from dotenv import load_dotenv
 
+load_dotenv('.env')
 tmdb_bp = Blueprint('tmdb', __name__, url_prefix='/tmdb')
 
 

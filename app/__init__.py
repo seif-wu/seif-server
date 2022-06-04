@@ -10,6 +10,9 @@ from flask_sqlalchemy import SQLAlchemy
 from app.models.schema import Schema
 from config import config
 
+from dotenv import load_dotenv
+load_dotenv('.env')
+
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()

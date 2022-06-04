@@ -1,5 +1,7 @@
 import datetime
 import os
+from dotenv import load_dotenv
+load_dotenv('.env')
 
 
 class Config:
@@ -7,8 +9,8 @@ class Config:
     JWT_SECRET_KEY = os.getenv("APP_SECRET_KEY")
     JSON_AS_ASCII = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    SQLALCHEMY_TRACK_MODIFICATIONS=True
-    JWT_ACCESS_TOKEN_EXPIRES=datetime.timedelta(days=30)
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(days=30)
     REDIS_HOST = os.getenv("REDIS_HOST")
     REDIS_PORT = os.getenv("REDIS_PORT")
     REDIS_DB = os.getenv("REDIS_DB")
@@ -17,12 +19,13 @@ class Config:
     def init_app(app):
         pass
 
+
 # 数据库
-mysql_username=os.getenv("MYSQL_USERNAME")
-mysql_password=os.getenv("MYSQL_PASSWORD")
-mysql_server=os.getenv("MYSQL_SERVER")
-mysql_db_name=os.getenv("MYSQL_DB_NAME")
-mysql_port=os.getenv("MYSQL_PORT")
+mysql_username = os.getenv("MYSQL_USERNAME")
+mysql_password = os.getenv("MYSQL_PASSWORD")
+mysql_server = os.getenv("MYSQL_SERVER")
+mysql_db_name = os.getenv("MYSQL_DB_NAME")
+mysql_port = os.getenv("MYSQL_PORT")
 
 
 class DevelopmentConfig(Config):
