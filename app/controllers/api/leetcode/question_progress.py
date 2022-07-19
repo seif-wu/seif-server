@@ -17,7 +17,7 @@ def question_progress():
     payload = json.dumps({
         "query": "\n    query userQuestionProgress($userSlug: String!) {\n  userProfileUserQuestionProgress(userSlug: $userSlug) {\n    numAcceptedQuestions {\n      difficulty\n      count\n    }\n    numFailedQuestions {\n      difficulty\n      count\n    }\n    numUntouchedQuestions {\n      difficulty\n      count\n    }\n  }\n}\n    ",
         "variables": {
-            "userSlug": "seifwu"
+            "userSlug": "xifo"
         }
     })
 
